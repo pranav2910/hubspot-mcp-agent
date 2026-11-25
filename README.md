@@ -144,15 +144,6 @@ uv run python -m hubspot_mcp.audit verify
 
 </details>
 
-## Known limits
-
-- **Other routes aren't covered.** A client that also has a shell, file access, a HubSpot connector or a browser could go around this server. Turn those off.
-- **Some HubSpot behavior is unconfirmed**, including Service Keys on free accounts.
-- **Very small timing gap.** An edit made between the last check and the write could be overwritten.
-- **Log rewriting.** A complete rewrite of the audit log shows up only against an outside copy of its hash, such as the one in the Slack summary.
-- **Model confidence isn't a safeguard.** It only helps route leads. Human approval is the safeguard.
-- **Score influence is unmeasured.** Hidden text can't cause a write, but whether it sways a *proposed* score hasn't been tested.
-
 ## Project layout
 
 | Path | Contents |

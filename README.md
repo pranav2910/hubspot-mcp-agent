@@ -15,39 +15,33 @@ This project puts the limits in code, where the model can't reach them.
 ## How it works
 
 ```text
-   AI agent (Claude Desktop)
-              |
-              |  every tool call
-              v
-   +-----------------------------+
-   | GUARD                       |
-   | policy, validation, limits  |----> not allowed: blocked, logged
-   +-----------------------------+
-              |
-      +-------+----------------+---------------------+
-      |                        |                     |
-    READ                    PROPOSE               REPORT
-      |                        |                     |
-      v                        v                     v
-  leads, companies,     confident, and        Slack summary,
-  cited research        data complete?        once a day,
-                          |         |         server-written
-                         no        yes
-                          |         |
-                          v         v
-                       needs     proposal
-                       review    queue
+AI agent
+  |
+  |  every tool call
+  v
+GUARD: policy, validation, limits, audit
+  |
+  |-- not allowed --> blocked and logged
+  |
+  |-- read ---------> leads, companies, research
+  |
+  |-- report -------> Slack summary, once a day
+  |
+  |-- propose ------> confident, data complete?
+                        |
+                        |-- no ---> needs review
+                        |
+                        |-- yes --> proposal queue
+                                         |
+                                         v
+                                  A PERSON DECIDES
                                     |
-                                    v
-                          A PERSON DECIDES
-                          in the terminal
-                             |        |
-                            no       yes
-                             |        |
-                             v        v
-                         rejected   recheck, then
-                                    write to HubSpot
+                                    |-- no --> rejected
+                                    |
+                                    |-- yes -> HubSpot
 ```
+
+The change is rechecked against the policy, limits and current HubSpot data just before it is written.
 
 ## What the agent can do
 

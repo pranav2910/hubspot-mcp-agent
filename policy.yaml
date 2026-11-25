@@ -1,0 +1,24 @@
+# What the model may do. Anything not listed is denied.
+# The code sets hard maximums; this file can only tighten them.
+version: 1
+timezone: America/Los_Angeles
+writes_enabled: true        # kill switch for approved writes
+writes_per_day: 20
+min_confidence: 0.6         # below this, a lead goes to needs review
+tiers: {A: 70, B: 40}
+
+research:
+  jobs_per_day: 30
+  dollars_per_day: 3.0
+
+write_fields:
+  contact: [lead_score, lead_score_reason]
+  task: [hs_task_subject, hs_task_body, hs_timestamp, hs_task_status, hubspot_owner_id]
+
+tools:
+  search_new_leads:     {allowed: true, approval: false, per_day: 200, max_days: 30}
+  get_company:          {allowed: true, approval: false, per_day: 200}
+  research_company:     {allowed: true, approval: false, per_day: 100}
+  update_lead_score:    {allowed: true, approval: true, per_day: 60}
+  create_followup_task: {allowed: true, approval: true, per_day: 60, max_due_days: 60}
+  post_slack_summary:   {allowed: true, approval: false, per_day: 1}

@@ -153,4 +153,4 @@ uv run python -m hubspot_mcp.audit verify
 | `hubspot_mcp/policy.py`, `audit.py`, `store.py` | Rules, log and saved state |
 | `hubspot_mcp/hubspot.py`, `research.py`, `slack.py` | Outside services |
 | `tests/` | Tests for each feature, plus the hostile model |
-| [`PLAN.md`](PLAN.md) | Full design |
+
